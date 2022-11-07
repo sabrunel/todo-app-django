@@ -1,10 +1,20 @@
-<a href="{% url 'tasks' %}"> &#8592; Return </a>
-<hr>
+{% extends 'tasks/index.html' %}
+{% block content %}  
+
+<header>
+    <a class="nav-link" href="{% url 'tasks' %}"> &#8592; Return </a>
+</header>
+
+<div class="form-title">
+    <h2>Delete task</h2>
+</div>
 
 
 <form method="POST">
     {% csrf_token %}
     <p>Are you sure you want to delete "{{ task }}"?</p>
     {{ form.as_p }}
-    <input type="submit" value="Confirm">
+    <input class="form-btn" type="submit" value="Confirm">
 </form>
+
+{% endblock %}

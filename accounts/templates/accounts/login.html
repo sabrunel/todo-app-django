@@ -1,9 +1,16 @@
-<h1>Log in</h1>
+{% extends 'tasks/index.html' %}
+{% block content %}  
+
+<div class="form-title">
+    <h2>Log in</h2>
+</div>
 
 <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Log in">
+    {{ form }}
+    <input class="form-btn" type="submit" value="Log in">
 </form>
 
-<p>Don't have an account yet? <a href="{% url 'signup' %}">Sign up</a></p>
+<p class="form-footer">Don't have an account yet? <a class="nav-link" href="{% url 'signup' %}">Sign up</a></p>
+
+{% endblock %}

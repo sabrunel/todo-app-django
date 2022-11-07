@@ -1,0 +1,266 @@
+:root {
+    --clr-main-dark:rgb(42, 55, 59);
+    --clr-main-accent:rgb(238, 62, 10);
+    --clr-base-white: rgb(255, 255, 255);
+    --clr-base-lightgrey: rgb(243, 248, 250);
+    --clr-base-mediumgrey: rgb(210, 224, 227);
+    --clr-base-darkgrey: rgb(92, 105, 108);
+}
+    
+/*  General layout and elements */
+    
+body {
+    background: var(--clr-base-lightgrey);
+    font-family: 'Quicksand', sans-serif;
+    margin:0;
+    padding:5vh 0;
+}
+    
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Gilda Display', serif;
+    line-height:1;
+    color: var(--clr-main-dark);
+}
+
+a {
+    text-decoration:none;
+    color: var(--clr-main-dark);
+    line-height:1;
+}
+
+p {
+    color: var(--clr-base-darkgrey);
+    line-height:1;
+    margin:0;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding:0.5em;
+}
+
+
+/* Header */
+
+header {
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding-bottom:2em;
+}
+
+.nav-link {
+    position:relative;
+    cursor: pointer;
+    }
+
+.nav-link::after {
+    content: '';
+    position:absolute;
+    left:0.1em;
+    bottom:-.2em;
+    width: 90%;
+    height:1px;
+    background: var(--clr-main-dark);
+    transform: scaleX(0);
+    transform-origin:right;
+    transition: transform 300ms ease-in-out;
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+    transform: scaleX(1);
+    transform-origin:left;
+}
+
+.task-count {
+    color:var(--clr-main-accent);
+}
+
+/* Search bar */ 
+
+.search-add-task {
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    margin-bottom: 2em;
+}
+
+.search-bar {
+    flex-grow:0.8;
+}
+
+/* Add task button */
+
+.add-btn {
+position: relative;
+width: 3em;
+height:3em;
+border-radius: 5px;
+background-image: linear-gradient(227deg,#ff4582 10%, var(--clr-main-accent) 90%);
+background-size:150%;
+background-position:left;
+transition: background-position 300ms ease;
+}
+
+.add-btn:hover,
+.add-btn:focus {
+cursor:pointer;
+background-position:right;
+}
+
+.add-btn:before,
+.add-btn:after {
+content: "";
+position:absolute;
+background:var(--clr-base-white);
+}
+
+
+.add-btn:before { 
+left:50%;
+top:0.7em;
+bottom:0.7em;
+width:4px;
+transform:translateX(-50%);
+}
+
+.add-btn:after { 
+top:50%;
+left:0.7em;
+right:0.7em;
+height:4px;
+transform:translateY(-50%);
+}
+
+
+/* Task list */
+
+.task-card {
+    background-color: var(--clr-base-white);
+    padding: 0 1em 1em 2.5em;
+    margin: 0.5em 0;
+    border-radius: 10px;
+    border: 1px solid var(--clr-base-mediumgrey);
+    box-shadow: 0.25rem 1rem 3rem -0.25rem rgba(39, 54, 58, 0.1);
+}
+
+.card-title {
+    display:flex;
+    justify-content: space-between;
+    position:relative;
+}
+
+.task-delete {
+    font-size:25px;
+    line-height: 0;
+}
+
+.task-title::before {
+    content:'';
+    color:white;
+    height:0.7em;
+    width:0.7em;
+    border:2px solid var(--clr-main-dark);
+    border-radius:50%;
+    background-color:transparent;
+    position:absolute;
+    left:-1.4em;
+}
+
+.task-title__completed::before {
+    content:'';
+    color:white;
+    height:0.7em;
+    width:0.7em;
+    border:2px solid var(--clr-main-dark);
+    border-radius:50%;
+    background-color:var(--clr-main-dark);
+    position:absolute;
+    left:-1.4em;
+}
+
+/* Forms */
+
+label,
+form span {
+    display:block;
+    margin:0.5em 10% 0 10%;
+}
+
+label {
+    color:var(--clr-main-dark);
+}
+
+form span {  /* style helper text */
+    font-size: 0.8em;
+    font-style: italic;
+    color: var(--clr-base-darkgrey);
+}
+
+input,
+textarea {
+    margin:0 0 0 10%;
+    font-family:'Quicksand', sans-serif;
+    font-size:1em;
+}
+
+input[type=text],
+input[type=password],
+textarea {
+    padding:0.5em;
+    border-radius: 5px;
+    border: 1px solid var(--clr-base-mediumgrey);
+    box-shadow: 0.25rem 1rem 3rem -0.25rem rgba(87,127,153,0.1);
+    width:80%;
+}
+
+input[name=search-text] {
+    width:60%;
+}
+
+input[type=submit] {
+    border: 1px solid var(--clr-main-dark);
+    border-radius:5px;
+    background-color: var(--clr-main-dark);
+    color: var(--clr-base-white);
+    transition-duration:300ms;
+    transition: 
+        background-color 300ms ease-in-out,
+        color 300ms ease-in-out;
+}
+
+input[type=submit]:hover,
+input[type=submit]:focus {
+    cursor: pointer;
+    background-color: transparent;
+    color:var(--clr-main-dark);
+}
+
+
+.form-title,
+.form-footer {
+    text-align: center;
+    padding:1em;
+}
+
+.form-btn {
+    display:block;
+    margin:2em auto;
+    padding:0.5em 2em;
+}
+
+.search-btn {
+    padding:0.5em;
+    margin:1em 0;
+}
+
+.search-text {
+    margin:0;
+}

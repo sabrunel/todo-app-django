@@ -1,5 +1,4 @@
 # Utilities
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -43,10 +42,11 @@ class AddTask(LoginRequiredMixin, CreateView):
     fields = ['title', 'description', 'is_important', 'is_completed']
     success_url = reverse_lazy('tasks')
 
-    def get_context_data(self, **kwargs):
-        context_data = super().get_context_data(**kwargs)
-        context_data['user'] = self.request.user
-        return context_data
+    def form_valid(self, form): 
+        """ Overrides the method to ensure the user is set when a task is created. """
+        form.instance.user = self.request.user
+
+        return super(AddTask, self).form_valid(form)
 
 class EditTask(LoginRequiredMixin, UpdateView):
     """A view that displays a form for editing a task."""
@@ -60,6 +60,7 @@ class DeleteTask(DeleteView):
     model = Task
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
+
 
 
 
