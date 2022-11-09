@@ -6,15 +6,13 @@
 </header>
 
 <div class="form-title">
-    <h2>Delete task</h2>
+    <h2>Task details</h2>
 </div>
-
 
 <form method="POST">
     {% csrf_token %}
-    <p>Are you sure you want to delete "{{ task }}"?</p>
-    {{ form.as_p }}
-    <input class="form-btn" type="submit" value="Confirm">
+    {{ form }}
+    <input class="form-btn" type="submit" value="Save">
 </form>
 
 {% endblock %}
